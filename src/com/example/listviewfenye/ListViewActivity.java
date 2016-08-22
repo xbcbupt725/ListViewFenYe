@@ -23,6 +23,10 @@ public class ListViewActivity extends ActionBarActivity {
 	List<Integer> list = new ArrayList<>();
 	int maxSize = 45;
 	int countSize = 10;
+	class ViewHolder{
+		TextView tv1;
+		TextView tv2;
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -93,9 +97,15 @@ public class ListViewActivity extends ActionBarActivity {
 				view = convertView;
 			}else{
 				view = getLayoutInflater().inflate(R.layout.list_item, null);
+				ViewHolder vh = new ViewHolder();
+				TextView tv1 = (TextView) view.findViewById(R.id.myTextView1);
+				TextView tv2 = (TextView) view.findViewById(R.id.myTextView2);
+				vh.tv1 = tv1;
+				vh.tv2 = tv2;
+				view.setTag(vh);
 			}
-			TextView tv2 = (TextView) view.findViewById(R.id.myTextView2);
-			tv2.setText(""+position);
+			ViewHolder vh = (ViewHolder)view.getTag();
+			vh.tv2.setText(""+position);
 			return view;
 		}
 		
